@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Rock Paper Scissors
+		</title>
+	</head>
+</html>
+<script>
+	function computerPlay()
+	{
+		let choices = ["Rock" , "Paper" , "Scissors"];
+		return choices[Math.floor(Math.random() * 3)];
+	}
+	function playRound(playerSelection , computerPlay)
+	{
+		playerSelection = capitalize(playerSelection);
+		if(playerSelection === "Rock" && computerPlay === "Scissors" || playerSelection === "Paper" && computerPlay === "Rock" || playerSelection === "Scissors" && computerPlay === "Paper")
+		{
+			return(`You Win! ${playerSelection} beats ${computerPlay}`);
+		}
+		else if(computerPlay === "Rock" && playerSelection === "Scissors" || computerPlay === "Paper" && playerSelection === "Rock" || computerPlay === "Scissors" && playerSelection === "Paper")
+		{
+			return(`You Lose! ${computerPlay} beats ${playerSelection}`);
+		}
+		return("You Tied!");
+	}
+	function game()
+	{
+		let scorePlayer = 0;
+		let	scoreComputer = 0;
+		for(let i = 0 ; i < 5 ; i++)
+		{
+			let playerInput = prompt("Rock, Paper, Scissors, Shoot!");
+			let result = playRound(playerInput , computerPlay());
+			console.log(result);
+			switch((result.split(""))[4])
+			{
+				case("W"):scorePlayer++;break;
+				case("L"):scoreComputer++;break;
+			}
+		}
+		console.log(`Player: ${scorePlayer}\tComputer: ${scoreComputer}`);
+		if(scorePlayer > scoreComputer)
+		{
+			console.log("You Win!");
+		}
+		else if(scoreComputer > scorePlayer)
+		{
+			console.log("You Lose!");
+		}
+		else
+		{
+			console.log("You Tied!");
+		}
+	}
+	function capitalize(str)
+	{
+		let splittedStr = (str.toLowerCase()).split("");
+		splittedStr[0] = splittedStr[0].toUpperCase();
+		return(splittedStr.join(""));
+	}
+</script>
