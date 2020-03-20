@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Rock Paper Scissors
+		</title>
+	</head>
+	<body>
+		<button id="r">Rock</button>
+		<button id="p">Paper</button>
+		<button id="s">Scissors</button>
+		<p id="you">You: 0</p>
+		<p id="cpu">CPU: 0</p>
+		<p id="result"></p>
+	</body>
+</html>
+<script>
+	const youP = document.querySelector("#you");
+	const cpuP = document.querySelector("#cpu");
+	const resultP = document.querySelector("#result");
+	document.querySelector("#r").addEventListener("click" , playRound);
+	document.querySelector("#p").addEventListener("click" , playRound);
+	document.querySelector("#s").addEventListener("click" , playRound);
+	let scorePlayer = 0;
+	let scoreComputer = 0;
+	function playRound()
+	{
+		let playerSelection = this.textContent;
+		console.log(playerSelection);
+		let choices = ["Rock" , "Paper" , "Scissors"];
+		let computerPlay = choices[Math.floor(Math.random() * 3)];
+		console.log(computerPlay);
+		if(playerSelection === "Rock" && computerPlay === "Scissors" || playerSelection === "Paper" && computerPlay === "Rock" || playerSelection === "Scissors" && computerPlay === "Paper")
+		{
+			scorePlayer++;
+			youP.textContent = `You: ${scorePlayer}`;
+		}
+		else if(computerPlay === "Rock" && playerSelection === "Scissors" || computerPlay === "Paper" && playerSelection === "Rock" || computerPlay === "Scissors" && playerSelection === "Paper")
+		{
+			scoreComputer++;
+			cpuP.textContent = `CPU: ${scoreComputer}`;
+		}
+		else
+		{
+			return("T");
+		}
+		if(scorePlayer === 5 || scoreComputer === 5){
+		{
+			if(scorePlayer > scoreComputer)
+			{
+				resultP.textContent = "You Win!";
+			}
+			else if(scoreComputer > scorePlayer)
+			{
+				resultP.textContent = "You Lose!";
+			}
+			else
+			{
+				resultP.textContent = "You Tied!";
+			}
+		}}
+	}
+</script>
